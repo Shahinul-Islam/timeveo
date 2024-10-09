@@ -1,0 +1,196 @@
+<style>
+ .custom-features-section {
+  padding: 50px 50px;
+  background-color: #f5f5f5;
+
+  .custom-features-section > .container{
+    text-align:center;
+  }
+
+.custom-features-wrapper {
+  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+}
+   .custom-features-header{
+     text-align:center;
+   }
+
+.features-left, .features-right {
+  /* width: 30%; */
+}
+
+.features-center {
+  /* width: 40%; */
+  text-align: center;
+}
+
+.features-center img {
+  max-width: 100%;
+  height: auto;
+  display:block;
+}
+
+.feature-item {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.feature-item .icon {
+  width: 40px;
+  height: auto;
+  margin-right: 15px; /* Add space between icon and content */
+}
+
+.feature-content h3 {
+  font-size: 22px;
+  font-weight:700;
+  margin: 0;
+}
+
+.feature-content p {
+  color: #777;
+  font-size: 18px;
+  margin-top: 5px;
+}
+   .custom-features-header h2{
+     font-size:48px;
+     font-weight:700;
+     margin-top:-20px;
+     margin-bottom:2px;
+   }
+   .custom-features-header p{
+     margin-top:-20px
+   }
+
+  .custom-features-wrapper{
+    margin:30px 0px;
+  }
+
+
+@media (max-width: 768px) {
+  .custom-features-wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+  .features-left, .features-right, .features-center {
+    width: 100%;
+  }
+  .custom-features-header h2{
+     font-size:32px;
+    font-weight:500;
+     margin-top:20px;
+    margin-bottom:30px;
+   }
+  .custom-features-header p{
+     margin-top:0px
+   }
+  .custom-features-wrapper {
+    display:flex;
+    flex-direction:column;
+  }
+  .features-left, .features-right {
+  text-align:left;
+}
+}
+
+</style>
+<section class="custom-features-section">
+  <div class="container">
+    <div class="custom-features-header">
+      <p style="font-weight:500;letter-spacing:2px;text-transform:uppercase">Enhanced Options</p>
+      <h2 style="">{{ section.settings.title }}</h2>
+      <p style="max-width:50%; margin:0 auto">{{ section.settings.subtitle }}</p>
+    </div>
+
+    <div class="custom-features-wrapper">
+      <div class="features-left">
+        {% for block in section.blocks limit: 4 %}
+          <div class="feature-item feature-left-item">
+            <img src="{{ block.settings.feature_icon | image_url }}" alt="Feature Icon" class="icon">
+            <div class="feature-content">
+              <h3>{{ block.settings.feature_title }}</h3>
+              <p>{{ block.settings.feature_text }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="features-center">
+        <img src="{{ section.settings.center_image | image_url }}" alt="Center Image">
+      </div>
+
+      <div class="features-right">
+        {% for block in section.blocks offset: 4 %}
+          <div class="feature-item feature-right-item">
+            <img src="{{ block.settings.feature_icon | image_url }}" alt="Feature Icon" class="icon">
+            <div class="feature-content">
+              <h3>{{ block.settings.feature_title }}</h3>
+              <p>{{ block.settings.feature_text }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Features Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Elevate Your Workouts"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Ut Lectus Arcu Bibendum At Varius Vel Pharetra Vel."
+    },
+    {
+      "type": "image_picker",
+      "id": "center_image",
+      "label": "Center Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "feature_icon",
+          "label": "Feature Icon"
+        },
+        {
+          "type": "text",
+          "id": "feature_title",
+          "label": "Feature Title",
+          "default": "Feature Title"
+        },
+        {
+          "type": "text",
+          "id": "feature_text",
+          "label": "Feature Text",
+          "default": "Feature description goes here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Features Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+

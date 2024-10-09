@@ -1,0 +1,249 @@
+<!-- Custom Liquid Section for Shopify with Responsive Design -->
+<style>
+  .main-features-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 60px;
+    background-color: #f6f6f6;
+    gap: 60px; /* Adds space between features-list and feature-image */
+  }
+
+  .features-list {
+    width: 45%;
+  }
+
+  .features-list h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #1e1e1e;
+    margin-top: 0px;
+  }
+
+  .features-list p {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #8f8f8f;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .feature-item img {
+    width: 32px;
+    height: 32px;
+    margin-right: 15px;
+    flex-shrink: 0;
+  }
+
+  .feature-item h3 {
+    font-size: 22.5px;
+    font-weight: 700;
+    color: #1e1e1e;
+    margin: 0px;
+  }
+
+  .feature-item p {
+    color: #6f6f6f;
+    font-size: 18px;
+    margin-top: 5px;
+  }
+
+  .feature-image {
+    width: 45%;
+  }
+
+  .feature-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  /* Tablet view */
+  @media only screen and (max-width: 1024px) {
+    .main-features-section {
+      flex-direction: column-reverse;
+      text-align: center;
+      padding: 40px 30px;
+      gap: 30px;
+    }
+
+    .features-list, .feature-image {
+      width: 100%;
+    }
+
+    .features-list {
+      margin-bottom: 30px;
+              display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature-item {
+      justify-content: center;
+      text-align: center;
+      flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .feature-item img {
+      margin-bottom: 10px;
+      margin-right: 0;
+    }
+
+    .feature-item h3, .feature-item p {
+      text-align: center;
+    }
+  }
+
+  /* Mobile view */
+  @media only screen and (max-width: 768px) {
+    .main-features-section {
+      padding: 30px 20px;
+      gap: 20px;
+    }
+
+    .features-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .features-list h2 {
+      font-size: 28px;
+    }
+
+    .feature-item h3 {
+      font-size: 16px;
+    }
+
+    .feature-item p {
+      font-size: 13px;
+    }
+  }
+
+  /* Small mobile view */
+  @media only screen and (max-width: 480px) {
+    .features-list h2 {
+      font-size: 24px;
+    }
+
+    .feature-item h3 {
+      font-size: 14px;
+    }
+
+    .feature-item p {
+      font-size: 12px;
+    }
+
+    .feature-image img {
+      border-radius: 5px;
+    }
+
+    .main-features-section {
+      padding: 20px 10px;
+    }
+
+    .features-list p {
+      font-size: 12px;
+      letter-spacing: 1.5px;
+    }
+  }
+
+  /* Alignments for larger screens */
+  @media only screen and (min-width: 1024px) {
+    .feature-item {
+      justify-content: start;
+      text-align: left;
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<section class="main-features-section">
+  <div class="features-list">
+    <p>{{ section.settings.subtitle }}</p>
+    <h2>{{ section.settings.title }}</h2>
+
+    {% for block in section.blocks %}
+      <div class="feature-item">
+        <img src="{{ block.settings.feature_icon | img_url: '32x32' }}" alt="{{ block.settings.feature_title }}">
+        <div>
+          <h3>{{ block.settings.feature_title }}</h3>
+          <p>{{ block.settings.feature_description }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="feature-image">
+    <img src="{{ section.settings.feature_image | img_url: '600x600' }}" alt="Product Image">
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Features Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Main Features"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Explore Functionality"
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_image",
+      "label": "Feature Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "feature_icon",
+          "label": "Feature Icon"
+        },
+        {
+          "type": "text",
+          "id": "feature_title",
+          "label": "Feature Title",
+          "default": "Extended Battery Life"
+        },
+        {
+          "type": "textarea",
+          "id": "feature_description",
+          "label": "Feature Description",
+          "default": "Erat nam at lectus urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Main Features Section with Icons",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}
