@@ -1,0 +1,161 @@
+<style>
+  .image-container {
+    height: 750px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* Make this relative for positioning */
+  }
+
+  .image-container img {
+    border-radius: 16px;
+    animation: scale 20s linear infinite;
+  }
+
+  @keyframes scale {
+    0% {
+      transform: scale(1.1);
+    }
+    20% {
+      transform: scale(1.05);
+    }
+    40% {
+      transform: scale(1);
+    }
+    60% {
+      transform: scale(1);
+    }
+    80% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1.1);
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .image-container {
+      height: 250px;
+    }
+
+    .image-container img {
+      width: 92%;
+      height: auto;
+    }
+  }
+
+  /* Floating pointer */
+  .floating-pointer {
+    background-color: #ffffff;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    position: absolute;
+    animation: blinking 2s linear infinite;
+    z-index: 29999;
+    cursor: pointer;
+  }
+  .floating-pointer:hover {
+    animation: none;
+  }
+
+  .floating-pointer:hover .floating-pointer-card {
+    display: block;
+  }
+
+  .floating-pointer-card {
+    background-color: #eeeeee;
+    height: 485px;
+    width: 300px;
+    padding: 17px;
+    border-radius: 12px;
+    position: absolute;
+    left: 55px;
+    display: none;
+  }
+  .floating-card-container {
+    background-color: white;
+    height: 455px;
+    width: 260px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .floating-card-image {
+    text-align: center;
+    height: 275px;
+    width: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .floating-card-image img {
+    width: 240px
+  }
+
+  .floating-card-container h3 {
+    max-width: 190px;
+    margin: 0 auto;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  @keyframes blinking {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+      width: 30px;
+      height: 30px;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+</style>
+
+<section id="smart-features">
+  {% render 'custom-container-header' %}
+    <div class="image-container">
+
+    <img
+      src="https://cdn.shopify.com/s/files/1/0724/2737/2794/files/smart-watch_9.webp?v=1728529003"
+      alt="smart-watch"
+      width="1600"
+      height=""
+      loading="lazy">
+
+    <!-- Floating pointer with card inside -->
+    <div class="floating-pointer">
+      <div class="floating-pointer-card">
+        <div class="floating-card-container">
+          <div class="floating-card-image">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0724/2737/2794/files/VioletWatch.webp?v=1728540546"
+              alt="violet watch"
+              height=""
+              width="">
+          </div>
+          <h3>Unisex Smart Watch</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Custom Smart Section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "smart_image",
+        "label": "Smart Image"
+      }
+    ]
+  }
+{% endschema %}

@@ -7,7 +7,8 @@
     align-items: center;
     padding: 50px 60px;
     background-color: #f6f6f6;
-    gap: 60px; /* Adds space between features-list and feature-image */
+    gap: 60px;
+    /* Adds space between features-list and feature-image */
   }
 
   .features-list {
@@ -18,16 +19,17 @@
     font-size: 3rem;
     font-weight: 700;
     color: #1e1e1e;
-    margin-top: 0px;
+    margin-top: 0;
   }
 
   .features-list p {
-    font-size: 14px;
+    font-size: 0.875rem;
     text-transform: uppercase;
     color: #8f8f8f;
     letter-spacing: 2px;
     margin-bottom: 10px;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Rubik'
+    , sans-serif;
     font-weight: 500;
   }
 
@@ -45,15 +47,15 @@
   }
 
   .feature-item h3 {
-    font-size: 22.5px;
+    font-size: 1.406rem;
     font-weight: 700;
     color: #1e1e1e;
-    margin: 0px;
+    margin: 0;
   }
 
   .feature-item p {
     color: #6f6f6f;
-    font-size: 18px;
+    font-size: 1.125rem;
     margin-top: 5px;
   }
 
@@ -77,22 +79,23 @@
       gap: 30px;
     }
 
-    .features-list, .feature-image {
+    .features-list,
+    .feature-image {
       width: 100%;
     }
 
     .features-list {
       margin-bottom: 30px;
-              display: flex;
-        flex-direction: column;
-        align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .feature-item {
       justify-content: center;
       text-align: center;
       flex-direction: row;
-        align-items: flex-start;
+      align-items: flex-start;
     }
 
     .feature-item img {
@@ -100,7 +103,8 @@
       margin-right: 0;
     }
 
-    .feature-item h3, .feature-item p {
+    .feature-item h3,
+    .feature-item p {
       text-align: center;
     }
   }
@@ -120,30 +124,30 @@
     }
 
     .features-list h2 {
-      font-size: 28px;
+      /* font-size: 28px; */
     }
 
     .feature-item h3 {
-      font-size: 16px;
+      /* font-size: 16px; */
     }
 
     .feature-item p {
-      font-size: 13px;
+      /* font-size: 13px; */
     }
   }
 
   /* Small mobile view */
   @media only screen and (max-width: 480px) {
     .features-list h2 {
-      font-size: 24px;
+      /* font-size: 24px; */
     }
 
     .feature-item h3 {
-      font-size: 14px;
+      /* font-size: 14px; */
     }
 
     .feature-item p {
-      font-size: 12px;
+      /* font-size: 12px; */
     }
 
     .feature-image img {
@@ -155,7 +159,7 @@
     }
 
     .features-list p {
-      font-size: 12px;
+      /* font-size: 12px; */
       letter-spacing: 1.5px;
     }
   }
@@ -178,7 +182,11 @@
 
     {% for block in section.blocks %}
       <div class="feature-item">
-        <img src="{{ block.settings.feature_icon | img_url: '32x32' }}" alt="{{ block.settings.feature_title }}">
+        <img
+          src="{{ block.settings.feature_icon  | img_url: '32x32' }}"
+          alt="{{ block.settings.feature_title }}"
+          width=""
+          height="">
         <div>
           <h3>{{ block.settings.feature_title }}</h3>
           <p>{{ block.settings.feature_description }}</p>
@@ -188,62 +196,62 @@
   </div>
 
   <div class="feature-image">
-    <img src="{{ section.settings.feature_image | img_url: '600x600' }}" alt="Product Image">
+    <img
+      src="{{ section.settings.feature_image | img_url: '600x600' }}"
+      alt="Product Image"
+      width=""
+      height="">
   </div>
 </section>
 
 {% schema %}
-{
-  "name": "Custom Features Section",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Section Title",
-      "default": "Main Features"
-    },
-    {
-      "type": "text",
-      "id": "subtitle",
-      "label": "Section Subtitle",
-      "default": "Explore Functionality"
-    },
-    {
-      "type": "image_picker",
-      "id": "feature_image",
-      "label": "Feature Image"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "feature",
-      "name": "Feature Item",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "feature_icon",
-          "label": "Feature Icon"
-        },
-        {
-          "type": "text",
-          "id": "feature_title",
-          "label": "Feature Title",
-          "default": "Extended Battery Life"
-        },
-        {
-          "type": "textarea",
-          "id": "feature_description",
-          "label": "Feature Description",
-          "default": "Erat nam at lectus urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Main Features Section with Icons",
-      "category": "Custom Sections"
-    }
-  ]
-}
+  {
+    "name": "Custom Features Section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "Main Features"
+      }, {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Section Subtitle",
+        "default": "Explore Functionality"
+      }, {
+        "type": "image_picker",
+        "id": "feature_image",
+        "label": "Feature Image"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "feature",
+        "name": "Feature Item",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "feature_icon",
+            "label": "Feature Icon"
+          }, {
+            "type": "text",
+            "id": "feature_title",
+            "label": "Feature Title",
+            "default": "Extended Battery Life"
+          }, {
+            "type": "textarea",
+            "id": "feature_description",
+            "label": "Feature Description",
+            "default": "Erat nam at lectus urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Main Features Section with Icons",
+        "category": "Custom Sections"
+      }
+    ]
+  }
 {% endschema %}
